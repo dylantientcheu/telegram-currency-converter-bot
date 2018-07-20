@@ -8,8 +8,11 @@ const Converter = require("./api/currency-converter"); // Currency converter cod
 
 const bot = new Telegraf(process.env.BOT_TOKEN); // Get the token from the environment variable
 
-const URL = process.env.URL; // get the Heroku URL for hosting
+const URL = process.env.URL; // get the Heroku config var URL
+const BOT_TOKEN = process.env.BOT_TOKEN || ""; // get Heroku config var BOT_TOKEN
 const PORT = process.env.PORT || 2000;
+
+// Config the webhook for heroku
 bot.telegram.setWebhook(`${URL}bot${BOT_TOKEN}`);
 bot.startWebhook(`/bot${BOT_TOKEN}`, null, PORT);
 
