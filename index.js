@@ -7,11 +7,6 @@ const WizardScene = require("telegraf/scenes/wizard");
 const Converter = require("./api/currency-converter"); // Currency converter code
 
 const bot = new Telegraf(process.env.BOT_TOKEN); // Get the token from the environment variable
-const URL = process.env.URL // get the Heroku URL for hosting
-const PORT = process.env.PORT || 2000;
-
-bot.telegram.setWebhook(`${URL}bot${BOT_TOKEN}`);
-bot.startWebhook(`/bot${BOT_TOKEN}`, null, PORT);
 
 // Start Bot
 bot.start(ctx => {
