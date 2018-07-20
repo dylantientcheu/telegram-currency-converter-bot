@@ -1,0 +1,25 @@
+{
+  "name": "currency-converter-bot",
+  "version": "1.0.0",
+  "description": "Currency converter tutorial bot",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "currency",
+    "converter",
+    "tutorial",
+    "telegram",
+    "telegraf",
+    "bot"
+  ],
+  "author": "Dylan Tientcheu",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "debug": "^3.1.0",
+    "telegraf": "^3.21.2"
+  }
+}
