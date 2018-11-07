@@ -8,6 +8,8 @@ const Converter = require("./api/currency-converter"); // Currency converter cod
 
 const bot = new Telegraf(process.env.BOT_TOKEN); // Get the token from the environment variable
 
+const debug = require("debug");
+
 // Start Bot
 bot.start(ctx => {
   ctx.reply(
@@ -21,7 +23,6 @@ bot.start(ctx => {
 
 // Go back to menu after action
 bot.action("BACK", ctx => {
-  ctx.reply(`Glad I could help`);
   ctx.reply(
     `Do you need something else, ${ctx.from.first_name}?`,
     Markup.inlineKeyboard([
@@ -75,17 +76,25 @@ const currencyConverter = new WizardScene(
     rates.then(res => {
       let newAmount = Object.values(res.data)[0] * amt;
       newAmount = newAmount.toFixed(3).toString();
-      ctx.reply(
-        `${amt} ${source} is worth \n${newAmount} ${dest}`,
-        Markup.inlineKeyboard([
-          Markup.callbackButton("🔙 Back to Menu", "BACK"),
-          Markup.callbackButton(
-            "💱 Convert Another Currency",
-            "CONVERT_CURRENCY"
-          )
-        ]).extra()
-      );
+
+      if (newAmount === "NaN") {
+        ctx.reply(
+          `Hmmm... weird, I can't convert this, check through your currency inputs`,
+          Markup.inlineKeyboard([
+            Markup.callbackButton("🔙 Back to Menu", "BACK"),
+            Markup.callbackButton("💱 Convert Again", "CONVERT_CURRENCY")
+          ]).extra()
+        );
+      } else
+        ctx.reply(
+          `${amt} ${source} is worth \n${newAmount} ${dest}`,
+          Markup.inlineKeyboard([
+            Markup.callbackButton("🔙 Back to Menu", "BACK"),
+            Markup.callbackButton("💱 Convert Again", "CONVERT_CURRENCY")
+          ]).extra()
+        );
     });
+
     return ctx.scene.leave();
   }
 );
