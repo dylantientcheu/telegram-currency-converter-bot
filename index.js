@@ -32,6 +32,18 @@ bot.action("BACK", ctx => {
   );
 });
 
+bot.on("inline_query", async ({ inlineQuery, answerInlineQuery }) => {
+  const offset = parseInt(inlineQuery.offset) || 0;
+  const tracks = await Converter.viewCountries
+  const results = tracks.map(track => ({
+    type: "audio",
+    id: track.id,
+    title: track.name,
+    audio_url: track.preview_url
+  }));
+  return answerInlineQuery(results, { next_offset: offset + 30 });
+});
+
 // Currency converter Wizard
 const currencyConverter = new WizardScene(
   "currency_converter",
