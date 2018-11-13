@@ -4,7 +4,7 @@
   "description": "Currency converter tutorial bot",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "$env:DEBUG='*,-not_this' && nodemon index.js",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
