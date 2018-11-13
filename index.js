@@ -131,7 +131,10 @@ bot.use(stage.middleware());
 bot.command("convert",  enter("currency_converter"));
 bot.action("CONVERT_CURRENCY",  enter("currency_converter"));
 
-// Match any input
+// Matching any input and default known inputs
+bot.hears("Hello",({reply}) => reply('Hello! What\'s up?'))
+bot.hears("Hi",({reply}) => reply('Hello! What\'s up?'))
+
 bot.hears(/.*/, ({ match, reply }) => reply(`I really wish i could understand what "${match}" means
 
 As for now you can use /convert to make me convert currencies`));
