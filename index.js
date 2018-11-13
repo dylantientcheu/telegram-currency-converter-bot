@@ -32,29 +32,6 @@ bot.action("BACK", ctx => {
   );
 });
 
-bot.on("inline_query", async ({ inlineQuery, answerInlineQuery }) => {
-  const offset = parseInt(inlineQuery.offset) || 0;
-  const res = Converter.viewCountries()
-  res.then((res) => {
-    let currencies = res.data.results
-    currencies = Object.values(currencies).splice(0,50)
-    currencies = currencies.map((result) => ({
-      type: 'article',
-      id: result.id,
-      title: result.currencyName,
-      url: 'google.com',
-      message_text: "Here are your currencies"
-    }))
-    return answerInlineQuery(currencies, { next_offset: offset + 30 });
-  })
-  /* const results = tracks.map(track => ({
-    type: "audio",
-    id: track.id,
-    title: track.name,
-    audio_url: track.preview_url
-  })); */
-  
-});
 
 // Currency converter Wizard
 const currencyConverter = new WizardScene(
