@@ -4,6 +4,8 @@ const Stage = require("telegraf/stage");
 const session = require("telegraf/session");
 const WizardScene = require("telegraf/scenes/wizard");
 
+const { enter, leave } = Stage
+
 const Converter = require("./api/currency-converter"); // Currency converter code
 
 const bot = new Telegraf(process.env.BOT_TOKEN); // Get the token from the environment variable
@@ -19,6 +21,28 @@ bot.start(ctx => {
     ]).extra()
   );
 });
+
+// Stop current action
+bot.command("stop", ctx => {
+  ctx.reply(
+    `Ok boss!`
+  );
+  return currencyConverter.leave()
+});
+
+// Get about bot
+bot.command("about", ctx => {
+  ctx.reply(
+    `Did you know I was created by a tutorial?
+
+Check out how I was made 👇😀
+https://medium.com/p/84d15b10597c?source=user_profile---------2------------------`
+  );
+  return currencyConverter.leave()
+});
+
+
+
 
 // Go back to menu after action
 bot.action("BACK", ctx => {
@@ -99,7 +123,12 @@ const currencyConverter = new WizardScene(
 );
 
 // Scene registration
-const stage = new Stage([currencyConverter], { default: "currency_converter" });
+const stage = new Stage([currencyConverter], {ttl: 10});
 bot.use(session());
 bot.use(stage.middleware());
+
+// Stop current action
+bot.command("convert",  enter("currency_converter"));
+bot.action("CONVERT_CURRENCY",  enter("currency_converter"));
+
 bot.startPolling(); // Start polling bot from you computer
