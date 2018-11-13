@@ -36,7 +36,7 @@ bot.command("about", ctx => {
     `Did you know I was created by a tutorial?
 
 Check out how I was made 👇😀
-https://medium.com/p/84d15b10597c?source=user_profile---------2------------------`
+https://chatbotslife.com/build-a-simple-telegram-currency-converter-bot-with-node-js-84d15b10597c`
   );
   return currencyConverter.leave()
 });
@@ -130,5 +130,10 @@ bot.use(stage.middleware());
 // Stop current action
 bot.command("convert",  enter("currency_converter"));
 bot.action("CONVERT_CURRENCY",  enter("currency_converter"));
+
+// Match any input
+bot.hears(/.*/, ({ match, reply }) => reply(`I really wish i could understand what "${match}" means
+
+As for now you can use /convert to make me convert currencies`));
 
 bot.startPolling(); // Start polling bot from you computer
