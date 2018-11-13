@@ -15,8 +15,7 @@ bot.start(ctx => {
   ctx.reply(
     `How can I help you, ${ctx.from.first_name}?`,
     Markup.inlineKeyboard([
-      Markup.callbackButton("💱 Convert Currency", "CONVERT_CURRENCY"),
-      Markup.callbackButton("🤑 View Rates", "VIEW_RATES")
+      Markup.callbackButton("💱 Convert Currency", "CONVERT_CURRENCY")
     ]).extra()
   );
 });
@@ -26,8 +25,7 @@ bot.action("BACK", ctx => {
   ctx.reply(
     `Do you need something else, ${ctx.from.first_name}?`,
     Markup.inlineKeyboard([
-      Markup.callbackButton("💱 Convert Currency", "CONVERT_CURRENCY"),
-      Markup.callbackButton("🤑 View Rates", "VIEW_RATES")
+      Markup.callbackButton("💱 Convert Currency", "CONVERT_CURRENCY")
     ]).extra()
   );
 });
