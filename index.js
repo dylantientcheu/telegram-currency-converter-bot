@@ -115,19 +115,16 @@ const currencyConverter = new WizardScene(
         );
         
       } else
-        {
-          ctx.reply(
+        ctx.reply(
           `${amt} ${source} is worth \n${newAmount} ${dest}`,
           Markup.inlineKeyboard([
             Markup.callbackButton("🔙 Back to Menu", "BACK"),
             Markup.callbackButton("💱 Convert Again", "CONVERT_CURRENCY")
           ]).extra()
         );
-        
-      }
     });
 
-    
+    return ctx.scene.leave();
   }
 );
 
