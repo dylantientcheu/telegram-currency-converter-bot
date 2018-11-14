@@ -100,10 +100,10 @@ const currencyConverter = new WizardScene(
     const source = ctx.wizard.state.currencySource;
     const dest = ctx.wizard.state.currencyDestination;
     const rates = Converter.getRate(source, dest);
-    console.log(rates);
     rates.then(res => {
       let newAmount = Object.values(res.data)[0] * amt;
       newAmount = newAmount.toFixed(3).toString();
+      console.log(newAmount);
 
       if (newAmount === "NaN") {
         ctx.reply(
