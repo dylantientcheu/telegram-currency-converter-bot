@@ -113,7 +113,7 @@ const currencyConverter = new WizardScene(
             Markup.callbackButton("💱 Convert Again", "CONVERT_CURRENCY")
           ]).extra()
         );
-        return ctx.scene.leave();
+        
       } else
         {
           ctx.reply(
@@ -123,7 +123,7 @@ const currencyConverter = new WizardScene(
             Markup.callbackButton("💱 Convert Again", "CONVERT_CURRENCY")
           ]).extra()
         );
-        return ctx.scene.leave();
+        
       }
     });
 
