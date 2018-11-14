@@ -96,6 +96,9 @@ const currencyConverter = new WizardScene(
     return ctx.wizard.next();
   },
   ctx => {
+    ctx.reply(
+      `Okay let's see this...`,
+    );
     const amt = (ctx.wizard.state.amount = ctx.message.text);
     const source = ctx.wizard.state.currencySource;
     const dest = ctx.wizard.state.currencyDestination;
@@ -133,7 +136,7 @@ const stage = new Stage([currencyConverter], {ttl: 300});
 bot.use(session());
 bot.use(stage.middleware());
 
-// Stop current action
+// Start convert action
 bot.command("convert",  enter("currency_converter"));
 bot.action("CONVERT_CURRENCY",  enter("currency_converter"));
 
